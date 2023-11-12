@@ -38,7 +38,7 @@ public class Event {
         return appetizerInfo;
     }
 
-    public List<Integer> getMainDishCountAndPrice() {
+    private List<Integer> getMainDishCountAndPrice() {
         int totalCount = 0;
         int totalPrice = 0;
         for (String menuOrder : menuOrders) {
@@ -107,7 +107,7 @@ public class Event {
         }
     }
 
-    public boolean giftEvent(int totalAmountBeforeDiscount) {
+    public boolean isGiftEvent(int totalAmountBeforeDiscount) {
         if (totalAmountBeforeDiscount >= 120000) {
             return true;
         }
