@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
-    private int date = 0;
-    private List<String> menuOrders = new ArrayList<>();
+    private static int date;
+    private static List<String> menuOrders = new ArrayList<>();
+    private static String badge = "";
+
     private int totalDiscount = 0;
-    private String badge = "";
 
     Calendar calendar = new Calendar();
 
