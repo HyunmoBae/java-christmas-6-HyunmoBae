@@ -153,8 +153,8 @@ public class Event {
         }
     }
 
-    public int getTotalDiscount() {
-        return totalDiscount;
+    public String getTotalDiscount() {
+        return String.format("%,d", totalDiscount);
     }
 
     public String getBadge() {
