@@ -41,7 +41,13 @@ class InputViewTest {
         inputView.validateMenuDuplicate(List.of("타파스", "제로콜라"));
         assertThatThrownBy(() -> inputView.validateMenuDuplicate(List.of("타파스", "타파스", "제로콜라")))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @Test
+    void validateMenuValueTest() {
+        inputView.validateMenuName(List.of("타파스", "제로콜라"));
+        assertThatThrownBy(() -> inputView.validateMenuName(List.of("코카콜라", "칠성사이다")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
