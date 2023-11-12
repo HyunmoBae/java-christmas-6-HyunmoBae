@@ -11,16 +11,14 @@ public class Event {
     private int date = 0;
     private List<String> menuOrders = new ArrayList<>();
     private int totalDiscount = 0;
+    private String badge = "";
 
     Calendar calendar = new Calendar();
 
     public Event(String name, int date, List<String> menuOrders) {
         this.date = date;
         this.menuOrders = menuOrders;
-        christmasDdayDiscount();
-        weekDayDiscount();
-        weekendDiscount();
-        specialDiscount();
+        isEvent(getTotalAmountBeforeDiscount());
     }
 
     private List<Integer> getAppetizerCountAndPrice() {
@@ -83,48 +81,55 @@ public class Event {
         return beverageInfo;
     }
 
-    private void christmasDdayDiscount() {
+    public String christmasDdayDiscount() {
         if (date <= 25) {
             totalDiscount += ((date - 1) * 100) + 1000;
-        }
-    }
-
-    private void weekDayDiscount() {
-        if (calendar.isDay(date).contains("weekday")) {
-            totalDiscount += getDessertCountAndPrice().get(0) * 2023;
-        }
-    }
-
-    private void weekendDiscount() {
-        if (calendar.isDay(date).contains("weekend")) {
-            totalDiscount += getMainDishCountAndPrice().get(0) * 2023;
-        }
-    }
-
-    private void specialDiscount() {
-        if (calendar.isDay(date).contains("specialDay")) {
-            totalDiscount += 1000;
-        }
-    }
-
-    public boolean isGiftEvent(int totalAmountBeforeDiscount) {
-        if (totalAmountBeforeDiscount >= 120000) {
-            return true;
-        }
-        return false;
-    }
-
-    public String getEventBadge() {
-        if (totalDiscount >= 20000) {
-            return "산타";
-        } else if (totalDiscount >= 10000) {
-            return "트리";
-        } else if (totalDiscount >= 5000) {
-            return "별";
-        } else if (totalDiscount < 5000) {
-            return "없음";
+            return String.format("%,d", ((date - 1) * 100) + 1000);
         }
         return null;
+    }
+
+    public String weekDayDiscount() {
+        if (calendar.isDay(date).contains("weekday")) {
+            totalDiscount += getDessertCountAndPrice().get(0) * 2023;
+            return String.format("%,d", getDessertCountAndPrice().get(0) * 2023);
+        }
+        return null;
+    }
+
+    public String weekendDiscount() {
+        if (calendar.isDay(date).contains("weekend")) {
+            totalDiscount += getMainDishCountAndPrice().get(0) * 2023;
+            return String.format("%,d", getMainDishCountAndPrice().get(0) * 2023);
+        }
+        return null;
+    }
+
+    public String specialDiscount() {
+        if (calendar.isDay(date).contains("specialDay")) {
+            totalDiscount += 1000;
+            return String.format("%,d", 1000);
+        }
+        return null;
+    }
+
+    public String isGiftEvent(int totalAmountBeforeDiscount) {
+        if (totalAmountBeforeDiscount >= 120000) {
+            return "샴페인";
+        }
+        return "없음";
+    }
+
+    public void getEventBadge() {
+        if (totalDiscount >= 20000) {
+            this.badge = "산타";
+        } else if (totalDiscount >= 10000) {
+            this.badge = "트리";
+        } else if (totalDiscount >= 5000) {
+            this.badge = "별";
+        } else if (totalDiscount < 5000) {
+            this.badge = "없음";
+        }
     }
 
     private String getOrderedMenuName(String menuOrder) {
@@ -136,6 +141,16 @@ public class Event {
         int countIndex = Integer.valueOf(menuOrder.indexOf("-") + 1);
         int menuCount = Integer.valueOf(menuOrder.substring(countIndex));
         return menuCount;
+    }
+
+    private void isEvent(int totalAmountBeforeDiscount) {
+        if (totalAmountBeforeDiscount >= 10000) {
+            christmasDdayDiscount();
+            weekDayDiscount();
+            weekendDiscount();
+            specialDiscount();
+            getEventBadge();
+        }
     }
 
     public int getTotalDiscount() {
