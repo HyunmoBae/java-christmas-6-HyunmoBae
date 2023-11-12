@@ -52,5 +52,13 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void validateMenuCountTest() {
+        inputView.validateMenuCount(List.of("타파스-1", "제로콜라-2"));
+        assertThatThrownBy(() -> inputView.validateMenuCount(List.of("타파스", "제로콜라-2")))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputView.validateMenuCount(List.of("타파스-10", "제로콜라-11")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }
