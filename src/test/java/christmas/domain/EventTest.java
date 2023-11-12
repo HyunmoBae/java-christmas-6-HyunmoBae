@@ -51,4 +51,18 @@ class EventTest {
         assertThat(result).isEqualTo(136354);
     }
 
+    @Test
+    void giftEventTest1() {
+        event = new Event("abc", 15, List.of("타파스-1", "바비큐립-2", "해산물파스타-1", "제로콜라-1", "아이스크림-1"));
+        boolean result = event.isGiftEvent(120000);
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void giftEventTest2() {
+        event = new Event("abc", 15, List.of("타파스-1", "바비큐립-2", "해산물파스타-1", "제로콜라-1", "아이스크림-1"));
+        boolean result = event.isGiftEvent(10000);
+        assertThat(result).isEqualTo(false);
+    }
+
 }
