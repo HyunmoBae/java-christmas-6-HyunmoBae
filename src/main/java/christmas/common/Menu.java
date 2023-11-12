@@ -1,7 +1,6 @@
 package christmas.common;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Menu {
@@ -70,11 +69,19 @@ public class Menu {
         }
     }
 
-    public static List<String> foodMenuItems() {
+    public static List<String> getFoodMenuItems() {
         List<String> foodMenuItems = new ArrayList<>();
-        foodMenuItems.add(Arrays.toString(Appetizer.values()));
-        foodMenuItems.add(Arrays.toString(MainDish.values()));
-        foodMenuItems.add(Arrays.toString(Dessert.values()));
+        addEnumValuesToList(Appetizer.values(), foodMenuItems);
+        addEnumValuesToList(MainDish.values(), foodMenuItems);
+        addEnumValuesToList(Dessert.values(), foodMenuItems);
+
+        return foodMenuItems;
+    }
+
+    private static List<String> addEnumValuesToList(Enum<?>[] values, List<String> foodMenuItems) {
+        for (Enum<?> enumValue : values) {
+            foodMenuItems.add(enumValue.name());
+        }
         return foodMenuItems;
     }
 
