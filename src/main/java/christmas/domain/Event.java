@@ -173,4 +173,11 @@ public class Event {
         return badge;
     }
 
+    public int getDate() {
+        return date;
+    }
+
+    public List<String> getMenuOrders() {
+        return menuOrders;
+    }
 }
