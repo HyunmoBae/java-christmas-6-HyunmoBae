@@ -66,7 +66,7 @@ public class InputView {
 
     public void validateMenu(List<String> menuOrders) {
         validateMenuDuplicate(filterMenuOrders(menuOrders));
-        validateMenuValue(filterMenuOrders(menuOrders));
+        validateMenuName(filterMenuOrders(menuOrders));
         validateMenuCount(menuOrders);
     }
 
@@ -103,9 +103,9 @@ public class InputView {
         }
     }
 
-    public void validateMenuValue(List<String> menuNames) {
+    public void validateMenuName(List<String> menuNames) {
         boolean valueError = true;
-        for (String foodMenu : Menu.foodMenuItems()) {
+        for (String foodMenu : Menu.getFoodMenuItems()) {
             if (menuNames.contains(foodMenu)) {
                 valueError = false;
             }
@@ -114,4 +114,5 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_MENU_VALUE.getMessage());
         }
     }
+
 }
