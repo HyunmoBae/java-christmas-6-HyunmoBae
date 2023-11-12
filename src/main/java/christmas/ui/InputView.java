@@ -74,7 +74,7 @@ public class InputView {
         int totalMenuCount = 0;
 
         for (String menu : menuOrders) {
-            int menuCount = Integer.parseInt(menu.substring(7));
+            int menuCount = Integer.parseInt(menu.substring(menu.indexOf("-") + 1));
             if (menuCount >= 1 || menuCount <= 20) {
                 totalMenuCount += menuCount;
             } else if (menuCount < 1 || menuCount > 20) {
@@ -89,7 +89,11 @@ public class InputView {
     public List<String> filterMenuOrders(List<String> menuOrders) {
         List<String> menuNames = new ArrayList<>();
         for (String menu : menuOrders) {
-            menuNames.add(menu.substring(0, menu.indexOf("-")));
+            if (menu.contains("-")) {
+                menuNames.add(menu.substring(0, menu.indexOf("-")));
+            } else if (!menu.contains("-")) {
+                throw new IllegalArgumentException(ErrorMessageType.INVALID_MENU_VALUE.getMessage());
+            }
         }
         return menuNames;
     }
