@@ -25,65 +25,61 @@ public class Event {
 
     private List<Integer> getAppetizerCountAndPrice() {
         int totalCount = 0;
-        int totalPrize = 0;
+        int totalPrice = 0;
         for (String menuOrder : menuOrders) {
             try {
                 Appetizer appetizer = Appetizer.valueOf(getOrderedMenuName(menuOrder));
-                totalPrize += appetizer.getPrice() * getOrderedMenuCount(menuOrder);
-                totalCount++;
+                totalPrice += appetizer.getPrice() * getOrderedMenuCount(menuOrder);
+                totalCount += getOrderedMenuCount(menuOrder);
             } catch (IllegalArgumentException e) {
-                continue;
             }
         }
-        List<Integer> appetizerInfo = List.of(totalCount, totalPrize);
+        List<Integer> appetizerInfo = List.of(totalCount, totalPrice);
         return appetizerInfo;
     }
 
-    private List<Integer> getMainDishCountAndPrice() {
+    public List<Integer> getMainDishCountAndPrice() {
         int totalCount = 0;
-        int totalPrize = 0;
+        int totalPrice = 0;
         for (String menuOrder : menuOrders) {
             try {
                 MainDish mainDish = MainDish.valueOf(getOrderedMenuName(menuOrder));
-                totalPrize += mainDish.getPrice() * getOrderedMenuCount(menuOrder);
-                totalCount++;
+                totalPrice += mainDish.getPrice() * getOrderedMenuCount(menuOrder);
+                totalCount += getOrderedMenuCount(menuOrder);
             } catch (IllegalArgumentException e) {
-                continue;
             }
         }
-        List<Integer> mainDishInfo = List.of(totalCount, totalPrize);
+        List<Integer> mainDishInfo = List.of(totalCount, totalPrice);
         return mainDishInfo;
     }
 
     private List<Integer> getDessertCountAndPrice() {
         int totalCount = 0;
-        int totalPrize = 0;
+        int totalPrice = 0;
         for (String menuOrder : menuOrders) {
             try {
                 Dessert dessert = Dessert.valueOf(getOrderedMenuName(menuOrder));
-                totalPrize += dessert.getPrice() * getOrderedMenuCount(menuOrder);
-                totalCount++;
+                totalPrice += dessert.getPrice() * getOrderedMenuCount(menuOrder);
+                totalCount += getOrderedMenuCount(menuOrder);
             } catch (IllegalArgumentException e) {
-                continue;
             }
         }
-        List<Integer> dessertInfo = List.of(totalCount, totalPrize);
+        List<Integer> dessertInfo = List.of(totalCount, totalPrice);
         return dessertInfo;
     }
 
     private List<Integer> getBeverageCountAndPrice() {
         int totalCount = 0;
-        int totalPrize = 0;
+        int totalPrice = 0;
         for (String menuOrder : menuOrders) {
             try {
                 Beverage beverage = Beverage.valueOf(getOrderedMenuName(menuOrder));
-                totalPrize += beverage.getPrice() * getOrderedMenuCount(menuOrder);
-                totalCount++;
+                totalPrice += beverage.getPrice() * getOrderedMenuCount(menuOrder);
+                totalCount += getOrderedMenuCount(menuOrder);
             } catch (IllegalArgumentException e) {
-                continue;
             }
         }
-        List<Integer> beverageInfo = List.of(totalCount, totalPrize);
+        List<Integer> beverageInfo = List.of(totalCount, totalPrice);
         return beverageInfo;
     }
 
@@ -135,7 +131,8 @@ public class Event {
     }
 
     private int getOrderedMenuCount(String menuOrder) {
-        int menuCount = menuOrder.indexOf("-" + 1);
+        int countIndex = Integer.valueOf(menuOrder.indexOf("-") + 1);
+        int menuCount = Integer.valueOf(menuOrder.substring(countIndex, countIndex + 1));
         return menuCount;
     }
 
