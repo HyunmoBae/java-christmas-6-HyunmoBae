@@ -66,9 +66,7 @@ public class InputView {
 
     public void validateMenu(List<String> menuOrders) {
         validateMenuDuplicate(filterMenuOrders(menuOrders));
-        System.out.println("1");
         validateMenuValue(filterMenuOrders(menuOrders));
-        System.out.println("2");
         validateMenuCount(menuOrders);
     }
 
