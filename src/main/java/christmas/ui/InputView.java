@@ -96,8 +96,8 @@ public class InputView {
 
     public void validateMenuDuplicate(List<String> menuNames) {
         Set<String> nonDuplicateMenuNames = new HashSet<>();
-        for (String menu : menuNames) {
-            if (!nonDuplicateMenuNames.add(menu.substring(0, menu.indexOf("-")))) {
+        for (String menuName : menuNames) {
+            if (!nonDuplicateMenuNames.add(menuName)) {
                 throw new IllegalArgumentException(ErrorMessageType.INVALID_MENU_VALUE.getMessage());
             }
         }
