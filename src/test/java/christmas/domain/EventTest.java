@@ -18,15 +18,37 @@ class EventTest {
 
     @Test
     void getTotalAmountBeforeDiscountTest2() {
-        event = new Event("abc", 15, List.of("시저샐러드-3", "티본스테이크-1", "아이스크림-2", "샴페인-1"));
+        event = new Event("abc", 18, List.of("시저샐러드-3", "티본스테이크-1", "아이스크림-2", "샴페인-1"));
         int result = event.getTotalAmountBeforeDiscount();
         assertThat(result).isEqualTo(114000);
     }
 
     @Test
     void getTotalAmountBeforeDiscountTest3() {
-        event = new Event("abc", 15, List.of("초코케이크-2", "바비큐립-1", "레드와인-1"));
+        event = new Event("abc", 17, List.of("초코케이크-2", "바비큐립-1", "레드와인-1"));
         int result = event.getTotalAmountBeforeDiscount();
         assertThat(result).isEqualTo(144000);
     }
+
+    @Test
+    void dayOfDiscountTest1() {
+        event = new Event("abc", 15, List.of("타파스-1", "바비큐립-2", "해산물파스타-1", "제로콜라-1", "아이스크림-1"));
+        int result = event.getTotalAmountAfterDiscount(156500);
+        assertThat(result).isEqualTo(148031);
+    }
+
+    @Test
+    void dayOfDiscountTest2() {
+        event = new Event("abc", 18, List.of("시저샐러드-3", "티본스테이크-1", "아이스크림-2", "샴페인-1"));
+        int result = event.getTotalAmountAfterDiscount(114000);
+        assertThat(result).isEqualTo(107254);
+    }
+
+    @Test
+    void dayOfDiscountTest3() {
+        event = new Event("abc", 17, List.of("초코케이크-2", "바비큐립-1", "레드와인-1"));
+        int result = event.getTotalAmountAfterDiscount(144000);
+        assertThat(result).isEqualTo(136354);
+    }
+
 }
