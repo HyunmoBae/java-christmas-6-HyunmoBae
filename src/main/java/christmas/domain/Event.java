@@ -157,6 +157,10 @@ public class Event {
         return totalDiscount;
     }
 
+    public String getBadge() {
+        return badge;
+    }
+
     public int getTotalAmountAfterDiscount(int totalAmountBeforeDiscount) {
         int totalAmountAfterDiscount = totalAmountBeforeDiscount - totalDiscount;
         return totalAmountAfterDiscount;
