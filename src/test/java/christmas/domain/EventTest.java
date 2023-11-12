@@ -54,42 +54,42 @@ class EventTest {
     @Test
     void giftEventTest1() {
         event = new Event("abc", 15, List.of("타파스-1", "바비큐립-2", "해산물파스타-1", "제로콜라-1", "아이스크림-1"));
-        boolean result = event.isGiftEvent(120000);
-        assertThat(result).isEqualTo(true);
+        String result = event.isGiftEvent(120000);
+        assertThat(result).isEqualTo("샴페인");
     }
 
     @Test
     void giftEventTest2() {
         event = new Event("abc", 15, List.of("타파스-1", "바비큐립-2", "해산물파스타-1", "제로콜라-1", "아이스크림-1"));
-        boolean result = event.isGiftEvent(10000);
-        assertThat(result).isEqualTo(false);
+        String result = event.isGiftEvent(10000);
+        assertThat(result).isEqualTo("없음");
     }
 
     @Test
     void getEventBadgeTest1() {
         event = new Event("abc", 17, List.of("초코케이크-2", "바비큐립-1", "레드와인-1"));
-        String result = event.getEventBadge();
+        String result = event.getBadge();
         assertThat(result).isEqualTo("별");
     }
 
     @Test
     void getEventBadgeTest2() {
         event = new Event("abc", 17, List.of("초코케이크-5", "바비큐립-1", "레드와인-1"));
-        String result = event.getEventBadge();
+        String result = event.getBadge();
         assertThat(result).isEqualTo("트리");
     }
 
     @Test
     void getEventBadgeTest3() {
         event = new Event("abc", 17, List.of("초코케이크-10", "바비큐립-1", "레드와인-1"));
-        String result = event.getEventBadge();
+        String result = event.getBadge();
         assertThat(result).isEqualTo("산타");
     }
 
     @Test
     void getEventBadgeTest4() {
         event = new Event("abc", 17, List.of("바비큐립-1", "레드와인-1"));
-        String result = event.getEventBadge();
+        String result = event.getBadge();
         assertThat(result).isEqualTo("없음");
     }
 }
