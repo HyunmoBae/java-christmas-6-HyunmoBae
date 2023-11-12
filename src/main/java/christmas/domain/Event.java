@@ -114,7 +114,7 @@ public class Event {
         return false;
     }
 
-    public String eventBadge() {
+    public String getEventBadge() {
         if (totalDiscount >= 20000) {
             return "산타";
         } else if (totalDiscount >= 10000) {
