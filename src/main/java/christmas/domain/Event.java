@@ -120,7 +120,9 @@ public class Event {
         } else if (totalDiscount >= 10000) {
             return "트리";
         } else if (totalDiscount >= 5000) {
-            return "산타";
+            return "별";
+        } else if (totalDiscount < 5000) {
+            return "없음";
         }
         return null;
     }
@@ -132,7 +134,7 @@ public class Event {
 
     private int getOrderedMenuCount(String menuOrder) {
         int countIndex = Integer.valueOf(menuOrder.indexOf("-") + 1);
-        int menuCount = Integer.valueOf(menuOrder.substring(countIndex, countIndex + 1));
+        int menuCount = Integer.valueOf(menuOrder.substring(countIndex));
         return menuCount;
     }
 
