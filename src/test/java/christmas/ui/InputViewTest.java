@@ -1,7 +1,9 @@
 package christmas.ui;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,4 +29,10 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void filterMenuOrdersTest() {
+        List<String> result = inputView.filterMenuOrders(List.of("타파스-1", "제로콜라-1"));
+        System.out.println(result);
+        assertThat(result).isEqualTo(List.of("타파스", "제로콜라"));
+    }
 }
