@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
-    private String name = "";
     private int date = 0;
     private List<String> menuOrders = new ArrayList<>();
     private int totalDiscount = 0;
@@ -16,7 +15,6 @@ public class Event {
     Calendar calendar = new Calendar();
 
     public Event(String name, int date, List<String> menuOrders) {
-        this.name = name;
         this.date = date;
         this.menuOrders = menuOrders;
         christmasDdayDiscount();
