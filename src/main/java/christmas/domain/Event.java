@@ -21,6 +21,17 @@ public class Event {
         isEvent(getTotalAmountBeforeDiscount());
     }
 
+    public int getTotalAmountBeforeDiscount() {
+        int totalAmountBeforeDiscount = getAppetizerCountAndPrice().get(1) + getMainDishCountAndPrice().get(1)
+                + getDessertCountAndPrice().get(1) + getBeverageCountAndPrice().get(1);
+        return totalAmountBeforeDiscount;
+    }
+
+    public int getTotalAmountAfterDiscount(int totalAmountBeforeDiscount) {
+        int totalAmountAfterDiscount = totalAmountBeforeDiscount - totalDiscount;
+        return totalAmountAfterDiscount;
+    }
+
     private List<Integer> getAppetizerCountAndPrice() {
         int totalCount = 0;
         int totalPrice = 0;
@@ -79,6 +90,16 @@ public class Event {
         }
         List<Integer> beverageInfo = List.of(totalCount, totalPrice);
         return beverageInfo;
+    }
+
+    private void isEvent(int totalAmountBeforeDiscount) {
+        if (totalAmountBeforeDiscount >= 10000) {
+            christmasDdayDiscount();
+            weekDayDiscount();
+            weekendDiscount();
+            specialDiscount();
+            getEventBadge();
+        }
     }
 
     public String christmasDdayDiscount() {
@@ -143,33 +164,12 @@ public class Event {
         return menuCount;
     }
 
-    private void isEvent(int totalAmountBeforeDiscount) {
-        if (totalAmountBeforeDiscount >= 10000) {
-            christmasDdayDiscount();
-            weekDayDiscount();
-            weekendDiscount();
-            specialDiscount();
-            getEventBadge();
-        }
-    }
-
     public String getTotalDiscount() {
         return String.format("%,d", totalDiscount);
     }
 
     public String getBadge() {
         return badge;
-    }
-
-    public int getTotalAmountAfterDiscount(int totalAmountBeforeDiscount) {
-        int totalAmountAfterDiscount = totalAmountBeforeDiscount - totalDiscount;
-        return totalAmountAfterDiscount;
-    }
-
-    public int getTotalAmountBeforeDiscount() {
-        int totalAmountBeforeDiscount = getAppetizerCountAndPrice().get(1) + getMainDishCountAndPrice().get(1)
-                + getDessertCountAndPrice().get(1) + getBeverageCountAndPrice().get(1);
-        return totalAmountBeforeDiscount;
     }
 
 }
