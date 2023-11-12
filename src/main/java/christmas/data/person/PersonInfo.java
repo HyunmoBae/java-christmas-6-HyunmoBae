@@ -4,7 +4,13 @@ import christmas.data.reservation.ReservationInfo;
 import java.util.List;
 
 public class PersonInfo {
-    private String name;
-    private List<ReservationInfo> reservationInfo;
-    private String eventBadge;
+    private static String name;
+    private static List<ReservationInfo> reservationInfo;
+    private static String eventBadge;
+
+    public PersonInfo(String name, List<ReservationInfo> reservationInfo, String eventBadge) {
+        this.name = name;
+        this.reservationInfo = reservationInfo;
+        this.eventBadge = eventBadge;
+    }
 }
