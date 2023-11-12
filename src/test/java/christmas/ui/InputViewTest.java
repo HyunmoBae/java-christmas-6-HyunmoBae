@@ -35,4 +35,13 @@ class InputViewTest {
         System.out.println(result);
         assertThat(result).isEqualTo(List.of("타파스", "제로콜라"));
     }
+
+    @Test
+    void validateMenuDuplicateTest() {
+        inputView.validateMenuDuplicate(List.of("타파스", "제로콜라"));
+        assertThatThrownBy(() -> inputView.validateMenuDuplicate(List.of("타파스", "타파스", "제로콜라")))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
 }
