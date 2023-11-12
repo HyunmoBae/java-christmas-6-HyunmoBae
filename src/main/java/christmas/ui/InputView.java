@@ -58,19 +58,21 @@ public class InputView {
         return menuOrders;
     }
 
-    private void validateDate(int date) {
+    public void validateDate(int date) {
         if (date < 1 || date > 31) {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_VALUE.getMessage());
         }
     }
 
-    private void validateMenu(List<String> menuOrders) {
-        validateMenuDuplicate(menuOrders);
-        validateMenuValue(menuOrders);
+    public void validateMenu(List<String> menuOrders) {
+        validateMenuDuplicate(filterMenuOrders(menuOrders));
+        System.out.println("1");
+        validateMenuValue(filterMenuOrders(menuOrders));
+        System.out.println("2");
         validateMenuCount(menuOrders);
     }
 
-    private void validateMenuCount(List<String> menuOrders) {
+    public void validateMenuCount(List<String> menuOrders) {
         int totalMenuCount = 0;
 
         for (String menu : menuOrders) {
@@ -86,7 +88,7 @@ public class InputView {
         }
     }
 
-    private List<String> filterMenuOrders(List<String> menuOrders) {
+    public List<String> filterMenuOrders(List<String> menuOrders) {
         List<String> menuNames = new ArrayList<>();
         for (String menu : menuOrders) {
             menuNames.add(menu.substring(0, menu.indexOf("-")));
@@ -94,7 +96,7 @@ public class InputView {
         return menuNames;
     }
 
-    private void validateMenuDuplicate(List<String> menuNames) {
+    public void validateMenuDuplicate(List<String> menuNames) {
         Set<String> nonDuplicateMenuNames = new HashSet<>();
         for (String menu : menuNames) {
             if (!nonDuplicateMenuNames.add(menu.substring(0, menu.indexOf("-")))) {
@@ -103,7 +105,7 @@ public class InputView {
         }
     }
 
-    private void validateMenuValue(List<String> menuNames) {
+    public void validateMenuValue(List<String> menuNames) {
         boolean valueError = true;
         for (String foodMenu : Menu.foodMenuItems()) {
             if (menuNames.contains(foodMenu)) {
