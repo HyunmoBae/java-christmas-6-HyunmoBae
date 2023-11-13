@@ -22,6 +22,12 @@ public class Event {
         isEvent(getTotalAmountBeforeDiscount());
     }
 
+    public Event(int date, List<String> menuOrders) {
+        this.date = date;
+        this.menuOrders = menuOrders;
+        isEvent(getTotalAmountBeforeDiscount());
+    }
+
     public int getTotalAmountBeforeDiscount() {
         int totalAmountBeforeDiscount = getAppetizerCountAndPrice().get(1) + getMainDishCountAndPrice().get(1)
                 + getDessertCountAndPrice().get(1) + getBeverageCountAndPrice().get(1);
@@ -165,8 +171,8 @@ public class Event {
         return menuCount;
     }
 
-    public String getTotalDiscount() {
-        return String.format("%,d", totalDiscount);
+    public int getTotalDiscount() {
+        return totalDiscount;
     }
 
     public String getBadge() {
