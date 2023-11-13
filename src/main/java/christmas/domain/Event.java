@@ -154,12 +154,12 @@ public class Event {
         }
     }
 
-    private String getOrderedMenuName(String menuOrder) {
+    public String getOrderedMenuName(String menuOrder) {
         String menuName = menuOrder.substring(0, menuOrder.indexOf("-"));
         return menuName;
     }
 
-    private int getOrderedMenuCount(String menuOrder) {
+    public int getOrderedMenuCount(String menuOrder) {
         int countIndex = Integer.valueOf(menuOrder.indexOf("-") + 1);
         int menuCount = Integer.valueOf(menuOrder.substring(countIndex));
         return menuCount;
