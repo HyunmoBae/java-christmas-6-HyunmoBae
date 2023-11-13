@@ -11,6 +11,7 @@ public class Event {
     private static int date;
     private static List<String> menuOrders = new ArrayList<>();
     private static String badge = "";
+    private static String gift = "";
 
     private int totalDiscount = 0;
 
@@ -100,6 +101,7 @@ public class Event {
             weekendDiscount();
             specialDiscount();
             getEventBadge();
+            isGiftEvent(totalAmountBeforeDiscount);
         }
     }
 
@@ -135,11 +137,11 @@ public class Event {
         return null;
     }
 
-    public String isGiftEvent(int totalAmountBeforeDiscount) {
+    public void isGiftEvent(int totalAmountBeforeDiscount) {
         if (totalAmountBeforeDiscount >= 120000) {
-            return "샴페인";
+            this.gift = "샴페인 1개";
         }
-        return "없음";
+        this.gift = "없음";
     }
 
     public void getEventBadge() {
