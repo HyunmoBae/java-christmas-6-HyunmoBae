@@ -78,11 +78,21 @@ public class Menu {
         return foodMenuItems;
     }
 
+    public static List<String> getAllMenuItems() {
+        List<String> menuItems = new ArrayList<>();
+        addEnumValuesToList(Appetizer.values(), menuItems);
+        addEnumValuesToList(MainDish.values(), menuItems);
+        addEnumValuesToList(Dessert.values(), menuItems);
+        addEnumValuesToList(Beverage.values(), menuItems);
+
+        return menuItems;
+    }
+
     private static List<String> addEnumValuesToList(Enum<?>[] values, List<String> foodMenuItems) {
         for (Enum<?> enumValue : values) {
             foodMenuItems.add(enumValue.name());
         }
         return foodMenuItems;
     }
-    
+
 }
