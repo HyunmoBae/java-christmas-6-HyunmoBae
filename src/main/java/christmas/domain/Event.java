@@ -107,36 +107,56 @@ public class Event {
         }
     }
 
-    public String christmasDdayDiscount() {
+    public int getChristmasDdayDiscount() {
+        if (date <= 25) {
+            return ((date - 1) * 100) + 1000;
+        }
+        return 0;
+    }
+
+    public void christmasDdayDiscount() {
         if (date <= 25) {
             totalDiscount += ((date - 1) * 100) + 1000;
-            return "크리스마스 디데이 할인: -" + String.format("%,d", ((date - 1) * 100) + 1000) + "원\n";
         }
-        return "";
     }
 
-    public String weekDayDiscount() {
+    public void weekDayDiscount() {
         if (calendar.isDay(date).contains("weekday")) {
             totalDiscount += getDessertCountAndPrice().get(0) * 2023;
-            return "평일 할인 : -" + String.format("%,d", getDessertCountAndPrice().get(0) * 2023) + "원\n";
         }
-        return "";
     }
 
-    public String weekendDiscount() {
+    public int getWeekDayDiscount() {
+        if (calendar.isDay(date).contains("weekday")) {
+            return getDessertCountAndPrice().get(0) * 2023;
+        }
+        return 0;
+    }
+
+    public void weekendDiscount() {
         if (calendar.isDay(date).contains("weekend")) {
             totalDiscount += getMainDishCountAndPrice().get(0) * 2023;
-            return "주말 할인 : -" + String.format("%,d", getMainDishCountAndPrice().get(0) * 2023) + "원\n";
         }
-        return "";
     }
 
-    public String specialDiscount() {
+    public int getWeekendDiscount() {
+        if (calendar.isDay(date).contains("weekend")) {
+            return getMainDishCountAndPrice().get(0) * 2023;
+        }
+        return 0;
+    }
+
+    public void specialDiscount() {
         if (calendar.isDay(date).contains("specialDay")) {
             totalDiscount += 1000;
-            return "특별 할인 : -" + String.format("%,d", 1000) + "원\n";
         }
-        return "";
+    }
+
+    public int getSpecialDiscount() {
+        if (calendar.isDay(date).contains("specialDay")) {
+            return 1000;
+        }
+        return 0;
     }
 
     public String isGiftEvent(int totalAmountBeforeDiscount) {
