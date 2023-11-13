@@ -47,8 +47,10 @@ public class OutputView {
         if (event.getTotalAmountBeforeDiscount() >= 120000) {
             System.out.println("증정 이벤트 : " + String.format("%,d", -25000) + "원");
             printAllDiscount(event);
+            System.out.println();
         } else if (event.getTotalAmountBeforeDiscount() >= 10000) {
             printAllDiscount(event);
+            System.out.println();
         } else if (event.getTotalAmountBeforeDiscount() < 10000) {
             System.out.println("없음\n");
         }
@@ -65,7 +67,7 @@ public class OutputView {
             System.out.println("주말 할인 : -" + String.format("%,d", event.getWeekendDiscount()) + "원");
         }
         if (event.getSpecialDiscount() != 0) {
-            System.out.println("특별 할인 : -" + String.format("%,d", event.getSpecialDiscount()) + "원\n");
+            System.out.println("특별 할인 : -" + String.format("%,d", event.getSpecialDiscount()) + "원");
         }
     }
 
