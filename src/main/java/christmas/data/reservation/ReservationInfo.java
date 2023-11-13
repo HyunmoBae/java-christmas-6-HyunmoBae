@@ -7,12 +7,12 @@ public class ReservationInfo {
     private static int totalAmountBeforeDiscount;
     private static int totalAmountAfterDiscount;
     private static int date;
-    private static String totalDiscount;
+    private static int totalDiscount;
     private static String gift;
     private static List<String> menuOrders;
 
     public ReservationInfo(String name, int totalAmountBeforeDiscount, int totalAmountAfterDiscount, int date,
-                           String totalDiscount, String gift, List<String> menuOrders) {
+                           int totalDiscount, String gift, List<String> menuOrders) {
         this.name = name;
         this.totalAmountBeforeDiscount = totalAmountBeforeDiscount;
         this.totalAmountAfterDiscount = totalAmountAfterDiscount;
