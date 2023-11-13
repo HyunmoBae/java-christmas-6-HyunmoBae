@@ -55,7 +55,7 @@ class EventTest {
     void giftEventTest1() {
         event = new Event("abc", 15, List.of("타파스-1", "바비큐립-2", "해산물파스타-1", "제로콜라-1", "아이스크림-1"));
         String result = event.isGiftEvent(120000);
-        assertThat(result).isEqualTo("샴페인");
+        assertThat(result).isEqualTo("샴페인 1개");
     }
 
     @Test
