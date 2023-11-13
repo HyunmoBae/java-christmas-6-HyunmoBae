@@ -12,6 +12,7 @@ public class Event {
     private static List<String> menuOrders = new ArrayList<>();
 
     private int totalDiscount = 0;
+    private int totalBenefitAmount = 0;
 
     Calendar calendar = new Calendar();
 
@@ -100,10 +101,18 @@ public class Event {
 
     private void isEvent(int totalAmountBeforeDiscount) {
         if (totalAmountBeforeDiscount >= 10000) {
+            giftEvent(totalAmountBeforeDiscount);
             christmasDdayDiscount();
             weekDayDiscount();
             weekendDiscount();
             specialDiscount();
+        }
+    }
+
+    public void christmasDdayDiscount() {
+        if (date <= 25) {
+            totalDiscount += ((date - 1) * 100) + 1000;
+            totalBenefitAmount += ((date - 1) * 100) + 1000;
         }
     }
 
@@ -114,15 +123,10 @@ public class Event {
         return 0;
     }
 
-    public void christmasDdayDiscount() {
-        if (date <= 25) {
-            totalDiscount += ((date - 1) * 100) + 1000;
-        }
-    }
-
     public void weekDayDiscount() {
         if (calendar.isDay(date).contains("weekday")) {
             totalDiscount += getDessertCountAndPrice().get(0) * 2023;
+            totalBenefitAmount += getDessertCountAndPrice().get(0) * 2023;
         }
     }
 
@@ -136,6 +140,7 @@ public class Event {
     public void weekendDiscount() {
         if (calendar.isDay(date).contains("weekend")) {
             totalDiscount += getMainDishCountAndPrice().get(0) * 2023;
+            totalBenefitAmount += getMainDishCountAndPrice().get(0) * 2023;
         }
     }
 
@@ -149,6 +154,7 @@ public class Event {
     public void specialDiscount() {
         if (calendar.isDay(date).contains("specialDay")) {
             totalDiscount += 1000;
+            totalBenefitAmount += 1000;
         }
     }
 
@@ -159,20 +165,25 @@ public class Event {
         return 0;
     }
 
-    public String isGiftEvent(int totalAmountBeforeDiscount) {
+    public void giftEvent(int totalAmountBeforeDiscount) {
         if (totalAmountBeforeDiscount >= 120000) {
-            totalDiscount += 25000;
+            totalBenefitAmount += 25000;
+        }
+    }
+
+    public String getGiftEvent(int totalAmountBeforeDiscount) {
+        if (totalAmountBeforeDiscount >= 120000) {
             return "샴페인 1개";
         }
         return "없음";
     }
 
-    public String getEventBadge(int totalDiscount) {
-        if (totalDiscount >= 20000) {
+    public String getEventBadge() {
+        if (totalBenefitAmount >= 20000) {
             return "산타";
-        } else if (totalDiscount >= 10000) {
+        } else if (totalBenefitAmount >= 10000) {
             return "트리";
-        } else if (totalDiscount >= 5000) {
+        } else if (totalBenefitAmount >= 5000) {
             return "별";
         }
         return "없음";
@@ -191,6 +202,10 @@ public class Event {
 
     public int getTotalDiscount() {
         return totalDiscount;
+    }
+
+    public int getTotalBenefitAmount() {
+        return totalBenefitAmount;
     }
 
     public int getDate() {
