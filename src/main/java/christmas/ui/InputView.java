@@ -72,10 +72,9 @@ public class InputView {
 
     public void validateMenuCount(List<String> menuOrders) {
         int totalMenuCount = 0;
-
         for (String menu : menuOrders) {
             int menuCount = Integer.parseInt(menu.substring(menu.indexOf("-") + 1));
-            if (menuCount >= 1 || menuCount <= 20) {
+            if (menuCount >= 1 && menuCount <= 20) {
                 totalMenuCount += menuCount;
             } else if (menuCount < 1 || menuCount > 20) {
                 throw new IllegalArgumentException(ErrorMessageType.INVALID_MENU_VALUE.getMessage());
