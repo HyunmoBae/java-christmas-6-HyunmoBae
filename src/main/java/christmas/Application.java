@@ -1,5 +1,6 @@
 package christmas;
 
+import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Event;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
@@ -24,5 +25,6 @@ public class Application {
         outputView.printTotalBenefitAmount(event);
         outputView.printTotalAmountAfterDiscount(event);
         outputView.printEventBadge(event);
+        Console.close();
     }
 }
