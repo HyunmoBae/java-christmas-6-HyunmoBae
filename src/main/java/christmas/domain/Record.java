@@ -6,7 +6,7 @@ import christmas.data.person.PersonInfo;
 public class Record {
 
     public void createPersonInfo(String name, Event event) {
-        PersonInfo personInfo = new PersonInfo(name, event.getBadge());
+        PersonInfo personInfo = new PersonInfo(name, event.getEventBadge(event.getTotalDiscount()));
     }
 
     public void createEventParticipationInfo(int totalPricipationPeople, long totalSales) {
