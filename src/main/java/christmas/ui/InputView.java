@@ -13,7 +13,6 @@ public class InputView {
 
     public String readName() {
         String name = "";
-
         System.out.println("예약자명을 입력해주세요!");
         while (true) {
             try {
