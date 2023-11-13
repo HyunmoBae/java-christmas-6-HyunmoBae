@@ -26,14 +26,15 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printEventBenefitsPreview(Event event) {
-        System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(event.getTotalAmountAfterDiscount(event.getTotalAmountBeforeDiscount()) + "원\n");
-    }
-
     public void printTotalAmountBeforeDiscount(Event event) {
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(String.format("%,d", event.getTotalAmountBeforeDiscount()) + "원\n");
+    }
+
+    public void printTotalAmountAfterDiscount(Event event) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(
+                String.format("%,d", event.getTotalAmountAfterDiscount(event.getTotalAmountBeforeDiscount())) + "원\n");
     }
 
     public void printGiftMenu(Event event) {
@@ -41,7 +42,7 @@ public class OutputView {
         System.out.println(event.isGiftEvent(event.getTotalAmountBeforeDiscount()) + "\n");
     }
 
-    public void printBenefitHistory(Event event) {
+    public void printEventHistory(Event event) {
         System.out.println("<혜택 내역>");
         if (event.getTotalAmountBeforeDiscount() >= 120000) {
             System.out.println("증정 이벤트 : " + String.format("%,d", -25000) + "원");
@@ -54,10 +55,18 @@ public class OutputView {
     }
 
     public void printAllDiscount(Event event) {
-        System.out.print(event.christmasDdayDiscount());
-        System.out.print(event.weekDayDiscount());
-        System.out.print(event.weekendDiscount());
-        System.out.print(event.specialDiscount() + "\n");
+        if (event.getChristmasDdayDiscount() != 0) {
+            System.out.println("크리스마스 디데이 할인: -" + String.format("%,d", event.getChristmasDdayDiscount()) + "원");
+        }
+        if (event.getWeekDayDiscount() != 0) {
+            System.out.println("평일 할인 : -" + String.format("%,d", event.getWeekDayDiscount()) + "원");
+        }
+        if (event.getWeekendDiscount() != 0) {
+            System.out.println("주말 할인 : -" + String.format("%,d", event.getWeekendDiscount()) + "원");
+        }
+        if (event.getSpecialDiscount() != 0) {
+            System.out.println("특별 할인 : -" + String.format("%,d", event.getSpecialDiscount()) + "원\n");
+        }
     }
 
     public void printTotalDiscount(Event event) {
