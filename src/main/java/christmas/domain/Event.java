@@ -10,7 +10,6 @@ import java.util.List;
 public class Event {
     private static int date;
     private static List<String> menuOrders = new ArrayList<>();
-    private static String badge = "";
 
     private int totalDiscount = 0;
 
@@ -105,59 +104,58 @@ public class Event {
             weekDayDiscount();
             weekendDiscount();
             specialDiscount();
-            getEventBadge();
         }
     }
 
     public String christmasDdayDiscount() {
         if (date <= 25) {
             totalDiscount += ((date - 1) * 100) + 1000;
-            return "크리스마스 디데이 할인: -" + String.format("%,d", ((date - 1) * 100) + 1000) + "원";
+            return "크리스마스 디데이 할인: -" + String.format("%,d", ((date - 1) * 100) + 1000) + "원\n";
         }
-        return null;
+        return "";
     }
 
     public String weekDayDiscount() {
         if (calendar.isDay(date).contains("weekday")) {
             totalDiscount += getDessertCountAndPrice().get(0) * 2023;
-            return "평일 할인 : -" + String.format("%,d", getDessertCountAndPrice().get(0) * 2023) + "원";
+            return "평일 할인 : -" + String.format("%,d", getDessertCountAndPrice().get(0) * 2023) + "원\n";
         }
-        return null;
+        return "";
     }
 
     public String weekendDiscount() {
         if (calendar.isDay(date).contains("weekend")) {
             totalDiscount += getMainDishCountAndPrice().get(0) * 2023;
-            return "주말 할인 : -" + String.format("%,d", getMainDishCountAndPrice().get(0) * 2023) + "원";
+            return "주말 할인 : -" + String.format("%,d", getMainDishCountAndPrice().get(0) * 2023) + "원\n";
         }
-        return null;
+        return "";
     }
 
     public String specialDiscount() {
         if (calendar.isDay(date).contains("specialDay")) {
             totalDiscount += 1000;
-            return "특별 할인 : -" + String.format("%,d", 1000) + "원";
+            return "특별 할인 : -" + String.format("%,d", 1000) + "원\n";
         }
-        return null;
+        return "";
     }
 
     public String isGiftEvent(int totalAmountBeforeDiscount) {
         if (totalAmountBeforeDiscount >= 120000) {
+            totalDiscount += 25000;
             return "샴페인 1개";
         }
         return "없음";
     }
 
-    public void getEventBadge() {
+    public String getEventBadge(int totalDiscount) {
         if (totalDiscount >= 20000) {
-            this.badge = "산타";
+            return "산타";
         } else if (totalDiscount >= 10000) {
-            this.badge = "트리";
+            return "트리";
         } else if (totalDiscount >= 5000) {
-            this.badge = "별";
-        } else if (totalDiscount < 5000) {
-            this.badge = "없음";
+            return "별";
         }
+        return "없음";
     }
 
     public String getOrderedMenuName(String menuOrder) {
@@ -173,10 +171,6 @@ public class Event {
 
     public int getTotalDiscount() {
         return totalDiscount;
-    }
-
-    public String getBadge() {
-        return badge;
     }
 
     public int getDate() {
