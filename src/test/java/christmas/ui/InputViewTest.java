@@ -44,11 +44,20 @@ class InputViewTest {
     }
 
     @Test
-    void validateMenuValueTest() {
+    void validateIncludeFoodTest() {
+        inputView.validateIncludeFood(List.of("타파스", "제로콜라"));
+        assertThatThrownBy(() -> inputView.validateIncludeFood(List.of("코카콜라", "칠성사이다")))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputView.validateIncludeFood(List.of("제로콜라")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateMenuName() {
         inputView.validateMenuName(List.of("타파스", "제로콜라"));
         assertThatThrownBy(() -> inputView.validateMenuName(List.of("코카콜라", "칠성사이다")))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> inputView.validateMenuName(List.of("제로콜라")))
+        assertThatThrownBy(() -> inputView.validateMenuName(List.of("감바스", "타파스")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
