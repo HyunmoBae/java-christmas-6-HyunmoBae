@@ -39,7 +39,7 @@ public class OutputView {
 
     public void printGiftMenu(Event event) {
         System.out.println("<증정 메뉴>");
-        System.out.println(event.isGiftEvent(event.getTotalAmountBeforeDiscount()) + "\n");
+        System.out.println(event.getGiftEvent(event.getTotalAmountBeforeDiscount()) + "\n");
     }
 
     public void printEventHistory(Event event) {
@@ -69,20 +69,14 @@ public class OutputView {
         }
     }
 
-    public void printTotalDiscount(Event event) {
+    public void printTotalBenefitAmount(Event event) {
         System.out.println("<총혜택 금액>");
-        if (event.getTotalAmountBeforeDiscount() >= 120000) {
-            System.out.println("-" + String.format("%,d", event.getTotalDiscount()) + "원\n");
-        } else if (event.getTotalAmountBeforeDiscount() < 10000) {
-            System.out.println("0원\n");
-        } else if (event.getTotalAmountBeforeDiscount() < 120000) {
-            System.out.println("-" + String.format("%,d", Integer.valueOf(event.getTotalDiscount())) + "원\n");
-        }
+        System.out.println(String.format("-" + "%,d", event.getTotalBenefitAmount()) + "원\n");
     }
 
     public void printEventBadge(Event event) {
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(event.getEventBadge(event.getTotalDiscount()));
+        System.out.println(event.getEventBadge());
     }
 
 }

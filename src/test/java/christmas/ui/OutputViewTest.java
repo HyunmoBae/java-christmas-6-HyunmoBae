@@ -44,8 +44,8 @@ class OutputViewTest {
     }
 
     @Test
-    void printTotalDiscountTest() {
-        outputView.printTotalDiscount(new Event(3, List.of("티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1")));
+    void printTotalBenefitAmountTest() {
+        outputView.printTotalBenefitAmount(new Event(3, List.of("티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1")));
     }
 
     @Test
